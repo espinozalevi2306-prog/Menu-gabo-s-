@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antojitos Gabo's | Menú Tradicional & Gourmet</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#F3C067',
+                            500: '#E5A93C',
+                            600: '#D4AF37',
+                            700: '#AA820A'
+                        },
+                        dark: {
+                            900: '#0F0F0F',
+                            800: '#171717',
+                            700: '#222222',
+                            600: '#2E2E2E'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'Playfair Display', 'serif'],
+                        sans: ['Montserrat', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0F0F0F;
+            color: #E5E7EB;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0D0 0%, #E5A93C 50%, #AA820A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #D4AF37, #F3C067, #AA820A) 1;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(229, 169, 60, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-black">
+
+    <!-- Header Section -->
+    <header class="relative bg-dark-800 border-b border-gold-600/20 py-10 px-4 text-center overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#E5A93C_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="relative max-w-4xl mx-auto z-10">
+            <div class="inline-block mb-3 px-3 py-1 rounded-full border border-gold-500/30 bg-gold-500/10 text-gold-400 text-xs font-semibold tracking-widest uppercase">
+                Tradición & Sabor Mexicano
+            </div>
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-wider gold-gradient-text uppercase mb-2">
+                Antojitos Gabo's
+            </h1>
+            <p class="text-gray-400 font-light text-sm sm:text-base tracking-widest uppercase italic mb-6">
+                Antojería Tradicional & Gourmet
+            </p>
+            <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <!-- Category Filters Nav -->
+        <nav class="mb-10 overflow-x-auto pb-4 no-scrollbar">
+            <div class="flex items-center justify-start md:justify-center gap-2 min-w-max px-2" id="filter-buttons">
+                <button onclick="filterCategory('all')" class="filter-btn active-filter px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-gold-500 bg-gold-500 text-dark-900 shadow-lg shadow-gold-500/20" data-category="all">
+                    <i class="fa-solid font-normal fa-utensils mr-2"></i>Todos
+                </button>
+                <button onclick="filterCategory('gorditas')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-dark-600 bg-dark-800 text-gray-300 hover:border-gold-500/50 hover:text-gold-400" data-category="gorditas">
+                    Gorditas
+                </button>
+                <button onclick="filterCategory('tacos-burritos')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-dark-600 bg-dark-800 text-gray-300 hover:border-gold-500/50 hover:text-gold-400" data-category="tacos-burritos">
+                    Tacos y Burritos
+                </button>
+                <button onclick="filterCategory('huaraches')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-dark-600 bg-dark-800 text-gray-300 hover:border-gold-500/50 hover:text-gold-400" data-category="huaraches">
+                    Huaraches
+                </button>
+                <button onclick="filterCategory('quesadillas-tostadas')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-dark-600 bg-dark-800 text-gray-300 hover:border-gold-500/50 hover:text-gold-400" data-category="quesadillas-tostadas">
+                    Quesadillas y Tostadas
+                </button>
+                <button onclick="filterCategory('especiales')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-dark-600 bg-dark-800 text-gray-300 hover:border-gold-500/50 hover:text-gold-400" data-category="especiales">
+                    Pambazos y Flautas
+                </button>
+                <button onclick="filterCategory('bebidas')" class="filter-btn px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 border border-dark-600 bg-dark-800 text-gray-300 hover:border-gold-500/50 hover:text-gold-400" data-category="bebidas">
+                    Bebidas
+                </button>
+            </div>
+        </nav>
+
+        <!-- Menu Items Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-grid">
+
+            <!-- Gorditas Card -->
+            <div class="menu-card card-hover bg-dark-800 rounded-xl border border-dark-700 hover:border-gold-500/40 p-6 flex flex-col justify-between" data-category="gorditas">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white group-hover:text-gold-400 transition-colors">Gorditas Tradicionales</h3>
+                        <span class="text-gold-400 font-semibold font-serif bg-gold-500/10 border border-gold-500/30 px-2.5 py-1 rounded-md text-sm">$25 - $28</span>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-4 leading-relaxed">Masa recién hecha, doraditas a la perfección y rellenas de tu guisado favorito.</p>
+                    <div class="border-t border-dark-700 pt-3">
+                        <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-2">Variedades disponibles:</span>
+                        <ul class="text-xs text-gray-300 space-y-1">
+                            <li class="flex justify-between"><span class="text-gray-300">• Pastor / Bisteck / Longaniza</span> <span class="text-gold-400">$28</span></li>
+                            <li class="flex justify-between"><span class="text-gray-300">• Campechana / Guisado</span> <span class="text-gold-400">$28</span></li>
+                            <li class="flex justify-between"><span class="text-gray-300">• Chicharrón prensado</span> <span class="text-gold-400">$25</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-5 pt-3 border-t border-dark-700/50">
+                    <button onclick="orderItem('Gorditas')" class="w-full py-2 bg-dark-700 hover:bg-gold-500 hover:text-dark-900 text-gray-300 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tacos Card -->
+            <div class="menu-card card-hover bg-dark-800 rounded-xl border border-dark-700 hover:border-gold-500/40 p-6 flex flex-col justify-between" data-category="tacos-burritos">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Tacos al Gusto</h3>
+                        <span class="text-gold-400 font-semibold font-serif bg-gold-500/10 border border-gold-500/30 px-2.5 py-1 rounded-md text-sm">$27 c/u</span>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-4 leading-relaxed">Servidos en tortilla suave bien caliente con carne premium y sus acompañamientos.</p>
+                    <div class="border-t border-dark-700 pt-3">
+                        <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-2">Especialidades:</span>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Pastor</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Bisteck</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Longaniza</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Campechano</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 pt-3 border-t border-dark-700/50">
+                    <button onclick="orderItem('Tacos')" class="w-full py-2 bg-dark-700 hover:bg-gold-500 hover:text-dark-900 text-gray-300 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- Burritos Card -->
+            <div class="menu-card card-hover bg-dark-800 rounded-xl border border-dark-700 hover:border-gold-500/40 p-6 flex flex-col justify-between" data-category="tacos-burritos">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Burritos Gabo's</h3>
+                        <span class="text-gold-400 font-semibold font-serif bg-gold-500/10 border border-gold-500/30 px-2.5 py-1 rounded-md text-sm">$45 c/u</span>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-4 leading-relaxed">Gran tortilla de harina envuelta con tu especialidad favorita y sazón único.</p>
+                    <div class="border-t border-dark-700 pt-3">
+                        <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-2">Especialidades:</span>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Pastor</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Bisteck</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Longaniza</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Campechano</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 pt-3 border-t border-dark-700/50">
+                    <button onclick="orderItem('Burritos')" class="w-full py-2 bg-dark-700 hover:bg-gold-500 hover:text-dark-900 text-gray-300 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- Huaraches Card -->
+            <div class="menu-card card-hover bg-dark-800 rounded-xl border border-dark-700 hover:border-gold-500/40 p-6 flex flex-col justify-between" data-category="huaraches">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Huaraches Preparados</h3>
+                        <span class="text-gold-400 font-semibold font-serif bg-gold-500/10 border border-gold-500/30 px-2.5 py-1 rounded-md text-sm">$50 - $55</span>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-4 leading-relaxed">Base artesanal de maíz rellena de frijol, dorada con queso y topping abundante.</p>
+                    <div class="border-t border-dark-700 pt-3">
+                        <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-2">Variedades:</span>
+                        <ul class="text-xs text-gray-300 space-y-1">
+                            <li class="flex justify-between"><span class="text-gray-300">• Pastor</span> <span class="text-gold-400">$55</span></li>
+                            <li class="flex justify-between"><span class="text-gray-300">• Bisteck / Longaniza</span> <span class="text-gold-400">$50</span></li>
+                            <li class="flex justify-between"><span class="text-gray-300">• Campechano / Guisado</span> <span class="text-gold-400">$50</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-5 pt-3 border-t border-dark-700/50">
+                    <button onclick="orderItem('Huaraches')" class="w-full py-2 bg-dark-700 hover:bg-gold-500 hover:text-dark-900 text-gray-300 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quesadillas Card -->
+            <div class="menu-card card-hover bg-dark-800 rounded-xl border border-dark-700 hover:border-gold-500/40 p-6 flex flex-col justify-between" data-category="quesadillas-tostadas">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Quesadillas</h3>
+                        <span class="text-gold-400 font-semibold font-serif bg-gold-500/10 border border-gold-500/30 px-2.5 py-1 rounded-md text-sm">$25 c/u</span>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-4 leading-relaxed">Doraditas a la plancha con queso derretido o guisado a elegir.</p>
+                    <div class="border-t border-dark-700 pt-3">
+                        <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-2">Rellenos disponibles:</span>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Queso</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Chicharrón</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Pollo</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Hongos</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Rajas</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Picadillo</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Pancita</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 pt-3 border-t border-dark-700/50">
+                    <button onclick="orderItem('Quesadillas')" class="w-full py-2 bg-dark-700 hover:bg-gold-500 hover:text-dark-900 text-gray-300 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tostadas Card -->
+            <div class="menu-card card-hover bg-dark-800 rounded-xl border border-dark-700 hover:border-gold-500/40 p-6 flex flex-col justify-between" data-category="quesadillas-tostadas">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Tostadas Crujientes</h3>
+                        <span class="text-gold-400 font-semibold font-serif bg-gold-500/10 border border-gold-500/30 px-2.5 py-1 rounded-md text-sm">$25 c/u</span>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-4 leading-relaxed">Tortilla frita crujiente con frijoles, crema, queso fresco y tu guisado.</p>
+                    <div class="border-t border-dark-700 pt-3">
+                        <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-2">Ingredientes:</span>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Pata</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Pollo</span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2 py-0.5 rounded border border-dark-600">Picadillo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 pt-3 border-t border-dark-700/50">
+                    <button onclick="orderItem('Tostadas')" class="w-full py-2 bg-dark-700 hover:bg-gold-500 hover:text-dark-900 text-gray-300 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pambazos Card -->
+            <div class="menu-card card-hover bg-dark-800 rounded-xl border border-dark-700 hover:border-gold-500/40 p-6 flex flex-col justify-between" data-category="especiales">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Pambazos</h3>
+                        <span class="text-gold-400 font-semibold font-serif bg-gold-500/10 border border-gold-500/30 px-2.5 py-1 rounded-md text-sm">$30 - $35</span>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-4 leading-relaxed">Pan adobado en guajillo, dorado a fuego lento y bien servido.</p>
+                    <div class="border-t border-dark-700 pt-3">
+                        <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-2">Opciones:</span>
+                        <ul class="text-xs text-gray-300 space-y-1">
+                            <li class="flex justify-between"><span class="text-gray-300">• Papas con Longaniza</span> <span class="text-gold-400">$30</span></li>
+                            <li class="flex justify-between"><span class="text-gray-300">• Guisado especial</span> <span class="text-gold-400">$35</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-5 pt-3 border-t border-dark-700/50">
+                    <button onclick="orderItem('Pambazos')" class="w-full py-2 bg-dark-700 hover:bg-gold-500 hover:text-dark-900 text-gray-300 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- Flautas Card -->
+            <div class="menu-card card-hover bg-dark-800 rounded-xl border border-dark-700 hover:border-gold-500/40 p-6 flex flex-col justify-between" data-category="especiales">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Flautas Doradas</h3>
+                        <span class="text-gold-400 font-semibold font-serif bg-gold-500/10 border border-gold-500/30 px-2.5 py-1 rounded-md text-sm">$30</span>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-4 leading-relaxed">Tacos dorados bien crujientes acompañados de lechuga, crema y queso.</p>
+                    <div class="border-t border-dark-700 pt-3">
+                        <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-2">Incluye:</span>
+                        <p class="text-xs text-gray-300">• Orden de 3 piezas de Carne de Res seleccionada.</p>
+                    </div>
+                </div>
+                <div class="mt-5 pt-3 border-t border-dark-700/50">
+                    <button onclick="orderItem('Orden de Flautas')" class="w-full py-2 bg-dark-700 hover:bg-gold-500 hover:text-dark-900 text-gray-300 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bebidas Card -->
+            <div class="menu-card card-hover bg-dark-800 rounded-xl border border-dark-700 hover:border-gold-500/40 p-6 flex flex-col justify-between" data-category="bebidas">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-serif text-xl font-bold text-white">Refrescos de Vidrio</h3>
+                        <span class="text-gold-400 font-semibold font-serif bg-gold-500/10 border border-gold-500/30 px-2.5 py-1 rounded-md text-sm">500 ml</span>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-4 leading-relaxed">Bebidas bien frías en su presentación de cristal para acompañar tu comida.</p>
+                    <div class="border-t border-dark-700 pt-3">
+                        <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold block mb-2">Sabores:</span>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2.5 py-1 rounded border border-dark-600 flex items-center gap-1.5">
+                                <i class="fa-solid fa-wine-bottle text-red-500"></i> Coca-Cola
+                            </span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2.5 py-1 rounded border border-dark-600 flex items-center gap-1.5">
+                                <i class="fa-solid fa-wine-bottle text-yellow-500"></i> Manzanita
+                            </span>
+                            <span class="bg-dark-700 text-gray-300 text-[11px] px-2.5 py-1 rounded border border-dark-600 flex items-center gap-1.5">
+                                <i class="fa-solid fa-wine-bottle text-orange-500"></i> Mirinda
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 pt-3 border-t border-dark-700/50">
+                    <button onclick="orderItem('Refresco de vidrio')" class="w-full py-2 bg-dark-700 hover:bg-gold-500 hover:text-dark-900 text-gray-300 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Pedir por WhatsApp
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer & Contact Section -->
+    <footer class="bg-dark-800 border-t border-gold-600/20 pt-12 pb-8 px-4 mt-16">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 text-center md:text-left">
+            
+            <!-- Horarios -->
+            <div class="bg-dark-900/60 p-6 rounded-xl border border-dark-700">
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-gold-500/10 flex items-center justify-center border border-gold-500/30">
+                        <i class="fa-regular fa-clock text-gold-400"></i>
+                    </div>
+                    <h4 class="font-serif text-lg font-bold text-white uppercase tracking-wider">Horarios de Atención</h4>
+                </div>
+                <ul class="text-xs text-gray-300 space-y-2">
+                    <li class="flex justify-between border-b border-dark-700 pb-2">
+                        <span class="text-gray-400">Martes a Viernes</span>
+                        <span class="font-semibold text-gold-400">4:30 pm – 11:00 pm</span>
+                    </li>
+                    <li class="flex justify-between pt-1">
+                        <span class="text-gray-400">Sábado y Domingo</span>
+                        <span class="font-semibold text-gold-400">12:30 pm – 11:30 pm</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contacto & Whatsapp -->
+            <div class="bg-dark-900/60 p-6 rounded-xl border border-dark-700 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/30">
+                            <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                        </div>
+                        <h4 class="font-serif text-lg font-bold text-white uppercase tracking-wider">Pedidos Directos</h4>
+                    </div>
+                    <p class="text-xs text-gray-400 mb-4">Haz tu pedido con anticipación para recoger o entregar directo a tu domicilio.</p>
+                </div>
+                
+                <a href="https://wa.me/525543095273?text=Hola,%20me%20gustaría%20hacer%20un%20pedido%20de%20Antojitos%20Gabo's" 
+                   target="_blank" 
+                   class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg shadow-emerald-900/30 text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    Enviar WhatsApp (55 4309 5273)
+                </a>
+            </div>
+
+        </div>
+
+        <div class="text-center border-t border-dark-700/60 pt-6">
+            <p class="text-xs text-gray-500">© 2026 Antojitos Gabo's. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic -->
+    <script>
+        function filterCategory(category) {
+            // Update active state on buttons
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                if(btn.getAttribute('data-category') === category) {
+                    btn.classList.add('bg-gold-500', 'text-dark-900', 'border-gold-500', 'shadow-lg', 'shadow-gold-500/20');
+                    btn.classList.remove('bg-dark-800', 'text-gray-300', 'border-dark-600');
+                } else {
+                    btn.classList.remove('bg-gold-500', 'text-dark-900', 'border-gold-500', 'shadow-lg', 'shadow-gold-500/20');
+                    btn.classList.add('bg-dark-800', 'text-gray-300', 'border-dark-600');
+                }
+            });
+
+            // Filter cards
+            const cards = document.querySelectorAll('.menu-card');
+            cards.forEach(card => {
+                if(category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function orderItem(itemName) {
+            const phone = "525543095273";
+            const message = encodeURIComponent(`Hola Antojitos Gabo's, me gustaría ordenar: ${itemName}`);
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
